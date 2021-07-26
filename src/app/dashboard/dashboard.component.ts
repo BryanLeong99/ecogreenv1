@@ -85,6 +85,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem('first') == 'true') {
+      location.reload();
+      sessionStorage.setItem('first', 'false');
+    }
     this.retrieveUserDetails(this.cookieService.get('authentication-token')).subscribe(data => {
       console.log(data);
       this.name = JSON.parse(data)[0].fullName;

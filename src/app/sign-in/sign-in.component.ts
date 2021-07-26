@@ -90,10 +90,11 @@ export class SignInComponent implements OnInit {
         // });
         // window.location.href = currentUrl;
 
-        // this.router.navigate(['/dashboard']);
-        location.reload();
+        this.router.navigate(['/']);
+        // location.reload();
 
         sessionStorage.setItem('navigate', 'true');
+        sessionStorage.setItem('first', 'true');
       } else {
         this.openDialog();
       }
