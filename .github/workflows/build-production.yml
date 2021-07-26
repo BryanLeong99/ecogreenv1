@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,11 +17,11 @@ jobs:
           npm install
           npm run build
 
-      -	name: Create 404.html
+      - name: Create 404.html
         uses: canastro/copy-file-action@0.0.2
         with:
-          source: angular/dist/classer/index.html
-          target: angular/dist/classer/404.html
+          source: dist/ap-lib/index.html
+          target: dist/ap-lib/404.html
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.3
