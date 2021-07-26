@@ -83,12 +83,15 @@ export class SignInComponent implements OnInit {
         // this.router.navigateByUrl('/' ).then(()=>
         // this.router.navigate(['/']));
 
-        let currentUrl = this.router.url;
+        // let currentUrl = this.router.url;
         // this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         //   this.router.navigate(['/']);
         //   console.log(currentUrl);
         // });
-        window.location.href = currentUrl;
+        // window.location.href = currentUrl;
+
+        // this.router.navigate(['/dashboard']);
+        location.reload();
 
         sessionStorage.setItem('navigate', 'true');
       } else {

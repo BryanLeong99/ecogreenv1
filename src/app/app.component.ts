@@ -35,7 +35,7 @@ export class AppComponent {
 
     console.log('refreshed');
 
-    // this.tid = setInterval(() => { this.checkCookie() }, 5000);
+    this.tid = setInterval(() => { this.checkCookie() }, 5000);
   }
 
   ngAfterViewInit() {
