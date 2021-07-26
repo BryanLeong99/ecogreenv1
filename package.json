@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /ap-lib/",
+    "build": "ng build --base-href /ecogreenv1/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
