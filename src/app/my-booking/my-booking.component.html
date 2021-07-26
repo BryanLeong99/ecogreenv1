@@ -1,0 +1,63 @@
+<div class="main-container">
+  <div class="page-title">
+    My Booking
+  </div>
+
+  <div class="booking-record-container" *ngIf="bookingArray.length == 0">
+    No upcoming booking.
+  </div>
+
+  <div class="content-container" *ngIf="bookingArray.length != 0">
+    <div *ngFor="let booking of bookingArray">
+      <div class="booking-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+                <span class="material-icons-round">today</span>
+                </span>
+          </div>
+          <div>
+            {{ booking.collector_name }}
+          </div>
+          <div>
+            {{ booking.scheduled_time }}
+          </div>
+          <div>
+            Status: {{ booking.status }}
+          </div>
+          <div>
+            Address: {{ booking.household_address }}
+          </div>
+        </div>
+        <div class="right-section">
+          <button mat-button (click)="viewContact(booking.row_key, booking.partition_key)">
+            View Contact
+          </button>
+          <!-- <button mat-button (click)="onRegisterForm(collector.user_id, collector.name)">
+            Book
+          </button> -->
+        </div>
+      </div>
+      <div *ngIf="expandContactID == booking.row_key && email != '' && phoneNumber != '' " class="details-container">
+        <div class="general-info-box">
+          <div class="item-text">
+            Collector's Email Address:
+            <div class="item-content">
+              {{ email }}
+            </div>
+          </div>
+
+          <div class="item-text">
+            Collector's Phone Number:
+            <div class="item-content">
+              {{ phoneNumber }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

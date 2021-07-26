@@ -1,0 +1,65 @@
+<div class="main-container">
+  <div class="page-title">
+    Book Collector
+  </div>
+
+  <div>
+    <div *ngFor="let collector of collectorArray">
+      <div class="collectors-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+                <span class="material-icons-round">local_shipping</span>
+                </span>
+          </div>
+          <div>
+            {{ collector.name }}
+          </div>
+          <div>
+            {{ collector.email }}
+          </div>
+          <div>
+            {{ collector.phone_number }}
+          </div>
+          <div>
+            Status: {{ collector.status }}
+          </div>
+          <div>
+            Rating: {{ collector.rating }}
+          </div>
+        </div>
+        <div class="right-section">
+          <button mat-button (click)="viewDetails(collector.id)">
+            View Details
+          </button>
+          <button mat-button (click)="onRegisterForm(collector.user_id, collector.name)">
+            Book
+          </button>
+        </div>
+      </div>
+      <div *ngIf="expandCollectorID == collector.id" class="details-container">
+        <div class="image-box">
+          <img [src]="collector.image_url"/>
+        </div>
+        <div class="general-info-box">
+          <div class="item-text">
+            Items
+          </div>
+          <div *ngFor="let item of collector.items">
+            {{ item.raw_item }}: RM {{ item.charging_rate_per_kg.toFixed(2) }}
+          </div>
+        </div>
+        <div class="schedule-box">
+          <div class="item-text">
+            Occupied Time
+          </div>
+          <div class="schedule-list">
+            <div *ngFor="let booking of collector.bookings; let i=index">
+             {{ i + 1 }}. {{ booking.scheduled_time }} &nbsp; &nbsp; &nbsp; Address:  {{ booking.household_address }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

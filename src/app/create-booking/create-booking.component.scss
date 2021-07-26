@@ -1,0 +1,169 @@
+.main-container {
+  padding: 3.3% 2.5% 3.3% 2.5%;
+  width: 100%;
+  height: 92.5%;
+}
+
+.page-title {
+  font-family: 'Nunito';
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 2.5%;
+}
+
+.collectors-container {
+  background-color: white;
+  width: 100%;
+  height: 65px;
+  border-radius: 6px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  // padding-left: 1.5%;
+  padding-right: 1.5%;
+  font-weight: 600;
+  font-family: 'Nunito';
+  font-size: 14px;
+  color: black;
+  margin-bottom: 1%;
+  div:nth-child(2) {
+      width: 14%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      white-space: nowrap;
+      div:nth-child(2) {
+          margin-left: 15%;
+      }
+  }
+}
+
+.info-icon-container {
+  background-color: #28A745;
+  border-radius: 6px 0 0 6px;
+  width: 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-section {
+  display: flex;
+  height: 100%;
+  width: 80%;
+  align-items: center;
+  div:nth-child(1) {
+      span {
+          color: white;
+          font-size: 25px;
+      }
+  }
+  div:nth-child(2) {
+    font-family: 'Nunito';
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 2%;
+  }
+  div:nth-child(3) {
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito';
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 2%;
+    color: #757575;
+    width: 15%;
+  }
+  div:nth-child(4) {
+    color: #757575;
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 10%;
+    width: 15%;
+  }
+  div:nth-child(5) {
+    color: #757575;
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 5%;
+    width: 20%;
+  }
+  div:nth-child(6) {
+    color: #757575;
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 3%;
+    width: 15%;
+  }
+}
+
+.right-section {
+  color: #757575;
+  font-size: 15px;
+  font-weight: 700;
+  width: 20% !important;
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  button {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #2728F2;
+    color: white;
+    border-radius: 100px;
+  }
+}
+
+.details-container {
+  border-radius: 6px;
+  background-color: white;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 15px 20px;
+  display: flex;
+  .image-box {
+    overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 6px;
+    img {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+
+  .general-info-box {
+    width: 250px;
+    margin-left: 20px;
+    font-family: 'Nunito';
+    font-size: 14px;
+    font-weight: 700;
+    .item-text {
+      font-size: 16px;
+      font-weight: 800;
+    }
+  }
+
+  .schedule-box {
+    width: 800px;
+    margin-left: 20px;
+    font-family: 'Nunito';
+    font-size: 14px;
+    font-weight: 700;
+    .item-text {
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .schedule-list {
+      height: 120px;
+      overflow-y: scroll;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<div class="main-container">
+  <div class="page-title">
+    My Earning
+  </div>
+
+  <div *ngIf="transactionArray.length == 0">
+    No past transaction.
+  </div>
+
+  <div>
+    <div *ngFor="let transaction of transactionArray">
+      <div class="collectors-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+                <span class="material-icons-round">attach_money</span>
+                </span>
+          </div>
+          <div>
+            Paid by: &nbsp;{{ transaction.payer_name }}
+          </div>
+          <div>
+            Received by: &nbsp; {{ transaction.receiver_name }}
+          </div>
+          <div>
+            {{ transaction.time_created }}
+          </div>
+          <div>
+            Total: &nbsp; RM {{ transaction.total_amount.toFixed(2) }}
+          </div>
+        </div>
+        <div class="right-section">
+          <button mat-button (click)="viewDetails(transaction.row_key, transaction.price_of_items)">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div *ngIf="expandTransactionID == transaction.row_key && priceBreakdownArray.length != 0" class="details-container">
+        <div class="general-info-box">
+          <div class="item-text">
+            Amount Breakdown
+          </div>
+          <div *ngFor="let item of priceBreakdownArray" class="item-content">
+            <div class="item-item">
+              {{ item.item }}
+            </div>
+            : &nbsp; &nbsp; RM &nbsp;
+            <div class="item-content">
+              {{ item.price.toFixed(2) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

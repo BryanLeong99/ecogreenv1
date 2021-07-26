@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>{{ roomName }}</h1>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="changeOperationHourForm">
+    <div mat-dialog-content class="content">
+        <mat-form-field appearance="outline">
+            <mat-label>Starting Time</mat-label>
+            <mat-select matNativeControl name="startingTime" required formControlName="startingTime" [(ngModel)]="startingTime">
+                <mat-option value="0">12:00 AM</mat-option>
+                <mat-option value="1">01:00 AM</mat-option>
+                <mat-option value="2">02:00 AM</mat-option>
+                <mat-option value="3">03:00 AM</mat-option>
+                <mat-option value="4">04:00 AM</mat-option>
+                <mat-option value="5">05:00 AM</mat-option>
+                <mat-option value="6">06:00 AM</mat-option>
+                <mat-option value="7">07:00 AM</mat-option>
+                <mat-option value="8">08:00 AM</mat-option>
+                <mat-option value="9">09:00 AM</mat-option>
+                <mat-option value="10">10:00 AM</mat-option>
+                <mat-option value="11">11:00 AM</mat-option>
+                <mat-option value="12">12:00 PM</mat-option>
+                <mat-option value="13">01:00 PM</mat-option>
+                <mat-option value="14">02:00 PM</mat-option>
+                <mat-option value="15">03:00 PM</mat-option>
+                <mat-option value="16">04:00 PM</mat-option>
+                <mat-option value="17">05:00 PM</mat-option>
+                <mat-option value="18">06:00 PM</mat-option>
+                <mat-option value="19">07:00 PM</mat-option>
+                <mat-option value="20">08:00 PM</mat-option>
+                <mat-option value="21">09:00 PM</mat-option>
+                <mat-option value="22">10:00 PM</mat-option>
+                <mat-option value="23">11:00 PM</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Closing Time</mat-label>
+            <mat-select matNativeControl name="endingTime" required formControlName="endingTime" [(ngModel)]="endingTime">
+                <mat-option value="24">12:00 AM</mat-option>
+                <mat-option value="1">01:00 AM</mat-option>
+                <mat-option value="2">02:00 AM</mat-option>
+                <mat-option value="3">03:00 AM</mat-option>
+                <mat-option value="4">04:00 AM</mat-option>
+                <mat-option value="5">05:00 AM</mat-option>
+                <mat-option value="6">06:00 AM</mat-option>
+                <mat-option value="7">07:00 AM</mat-option>
+                <mat-option value="8">08:00 AM</mat-option>
+                <mat-option value="9">09:00 AM</mat-option>
+                <mat-option value="10">10:00 AM</mat-option>
+                <mat-option value="11">11:00 AM</mat-option>
+                <mat-option value="12">12:00 PM</mat-option>
+                <mat-option value="13">01:00 PM</mat-option>
+                <mat-option value="14">02:00 PM</mat-option>
+                <mat-option value="15">03:00 PM</mat-option>
+                <mat-option value="16">04:00 PM</mat-option>
+                <mat-option value="17">05:00 PM</mat-option>
+                <mat-option value="18">06:00 PM</mat-option>
+                <mat-option value="19">07:00 PM</mat-option>
+                <mat-option value="20">08:00 PM</mat-option>
+                <mat-option value="21">09:00 PM</mat-option>
+                <mat-option value="22">10:00 PM</mat-option>
+                <mat-option value="23">11:00 PM</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="button-container-cancel">
+        <button mat-button (click)="onDismiss()" type="button">Cancel</button>
+    </div>
+    <div class="button-container-save" type="submit">
+        <button mat-button>Save</button>
+    </div>
+</form>
+
+<ngx-loading [show]="loading"></ngx-loading>

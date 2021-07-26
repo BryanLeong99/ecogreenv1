@@ -1,0 +1,46 @@
+<div class="main-container">
+    <div class="page-title">
+        Librarian Registration Request
+    </div>
+    <div *ngIf="result">
+        <div class="request-record-container" *ngFor="let request of requestArray">
+            <div class="left-section">
+                <div class="info-icon-container">
+                    <span class="material-icons-round">
+                        <span class="material-icons-round">
+                            how_to_reg
+                            </span>
+                        </span>
+                </div>
+                <div>
+                    {{ request.fullName }}
+                </div>
+                <div>
+                    {{ request.tpNumber.toUpperCase() }}
+                </div>
+                <div>
+                    {{ request.email }}
+                </div>
+                <div>
+                    {{ request.contactNumber }}
+                </div>
+                <div>
+                    {{ request.date }}
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="button-container button-container-approve">
+                    <button mat-button (click)="onUpdate(request.requestId, true)">Approve</button>
+                </div>
+                <div class="button-container button-container-reject">
+                    <button mat-button (click)="onUpdate(request.requestId, false)">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="request-record-container" *ngIf="!result" style="padding-left: 1.5%;">
+        No pending request.
+    </div>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

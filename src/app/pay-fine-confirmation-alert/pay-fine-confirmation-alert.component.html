@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Confirm Payment</h1>
+
+<div mat-dialog-content class="content">
+    Total: RM {{ amount.toFixed(2).toString() }}
+</div>
+<div class="button-container-cancel">
+    <button mat-button (click)="onDismiss()">Cancel</button>
+</div>
+<div class="button-container-confirm" (click)="onSubmit()">
+    <button mat-button>Confirm</button>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

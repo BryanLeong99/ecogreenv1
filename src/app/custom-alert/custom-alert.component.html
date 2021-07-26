@@ -1,0 +1,12 @@
+<h1> {{ title }} </h1>
+<div mat-dialog-content class="content">
+    <div mat-dialog-content class="content">
+        {{ content }}
+    </div>
+</div>
+<div class="button-container-success" (click)="onOKClick()" *ngIf="type == 'success'">
+    <button mat-button>OK</button>
+</div>
+<div class="button-container-fail" (click)="onOKClick()" *ngIf="type == 'fail'">
+    <button mat-button>OK</button>
+</div>

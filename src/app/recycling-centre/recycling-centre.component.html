@@ -1,0 +1,112 @@
+<div class="main-container">
+  <div class="page-title">
+    Nearby Recycling Centre
+  </div>
+
+  <div>
+    <div *ngFor="let centre of centreArray">
+      <div class="centre-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+                <span class="material-icons-round">precision_manufacturing</span>
+                </span>
+          </div>
+          <div>
+            {{ centre.name }}
+          </div>
+          <div>
+            {{ centre.email }}
+          </div>
+          <div>
+            {{ centre.phone_number }}
+          </div>
+          <div>
+            Operating Hour: {{ centre.operating_hour }}
+          </div>
+        </div>
+        <div class="right-section">
+          <button mat-button (click)="viewDetails(centre.id)">
+            View Details
+          </button>
+        </div>
+      </div>
+      <div *ngIf="expandCentreID == centre.id" class="details-container">
+        <div class="image-box">
+          <img [src]="centre.image_url"/>
+        </div>
+        <div class="address-box">
+          <div class="item-text">
+            Address
+          </div>
+          <div class="address">
+            {{ centre.address }}
+          </div>
+        </div>
+        <div class="general-info-box">
+          <div class="item-text">
+            Acceptable Items
+          </div>
+          <div class="items-contents">
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">local_drink</span>
+                </span>
+                <div>
+                  {{ itemArray[0] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">inventory_2</span>
+                </span>
+                <div>
+                  {{ itemArray[1] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">cable</span>
+                </span>
+                <div>
+                  {{ itemArray[2] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">wine_bar</span>
+                </span>
+                <div>
+                  {{ itemArray[3] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">attach_file</span>
+                </span>
+                <div>
+                  {{ itemArray[4] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">note</span>
+                </span>
+                <div>
+                  {{ itemArray[5] }}
+                </div>
+            </div>
+            <div class="item-box">
+              <span class="material-icons-round">
+                <span class="material-icons-round">sanitizer</span>
+                </span>
+                <div>
+                  {{ itemArray[6] }}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

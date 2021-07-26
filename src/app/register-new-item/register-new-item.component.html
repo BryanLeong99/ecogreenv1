@@ -1,0 +1,122 @@
+<div class="main-container" [style.height.%]="height">
+    <div class="page-title">
+        Register New Item
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerItemForm">
+        <div class="main-section-container">
+            <div class="section-title">
+                Book Info
+            </div>
+            <div class="search-form-container">
+                <form (ngSubmit)="onSearch()" [formGroup]="searchForm">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Search Barcode</mat-label>
+                        <input matInput type="text" name="title" ngModel [(ngModel)]="search" formControlName="search" (ngModelChange)="onChange($event)"/>
+                    </mat-form-field>
+                    <div class="search-button-container" type="submit">
+                        <button mat-button>
+                            <span class="material-icons-round">
+                                search
+                                </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="book-section" *ngIf="result">
+                <div class="image-container">
+                    <img [src]="image"/>
+                </div>
+                <div class="book-info-container">
+                    <div>
+                        {{ title }}
+                    </div>
+                    <div>
+                        by {{ author }}
+                        <button mat-button (click)="onShowCode(barcode)" type="button">
+                            <span class="material-icons-round show-code-button">
+                                qr_code_2
+                                </span>
+                        </button>
+                    </div>
+                    <div>
+                        Edition: {{ edition }}
+                    </div>
+                    <div>
+                        Publication Info: {{ publication }}
+                    </div>
+                    <div>
+                        ISBN: {{ isbn }}
+                    </div>
+                    <div>
+                        Physical Description: {{ physical }}
+                    </div>
+                    <div>
+                        Call Number: {{ callNumber }}
+                    </div>
+                    <div>
+                        Coordinate: {{ coordinate }}
+                    </div>
+                    <div>
+                        Subject: {{ subject }}
+                    </div>
+                </div>
+            </div>
+            <div class="section-break"></div>
+
+            <div class="section-title">
+                Item Info
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Circulation Type</mat-label>
+                <mat-select matNativeControl name="circulation" required formControlName="circulation">
+                    <mat-option value="CR001">General Circulation</mat-option>
+                    <mat-option value="CR002">Staff Circulation</mat-option>
+                    <mat-option value="CR003">Overnight Loan</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Collection Type</mat-label>
+                <mat-select matNativeControl name="collection" required formControlName="collection">
+                    <mat-option value="CL001">Print Book</mat-option>
+                    <mat-option value="CL002">eBook</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Library</mat-label>
+                <mat-select matNativeControl name="library" required formControlName="library">
+                    <mat-option value="LB001">APU Library</mat-option>
+                    <mat-option value="LB002">APIIT Library</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Tag Colour</mat-label>
+                <mat-select matNativeControl name="tag" required formControlName="tag">
+                    <mat-option value="TG01">Open</mat-option>
+                    <mat-option value="TG02">Yellow</mat-option>
+                    <mat-option value="TG03">Red</mat-option>
+                    <mat-option value="TG04">Green</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Call Number (Leave it as blank if it is not a physical material)</mat-label>
+                <input matInput type="text" name="callNumber" ngModel required formControlName="callNumber"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Copy Number</mat-label>
+                <input matInput type="number" name="copy" ngModel required formControlName="copy"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Map Coordinate</mat-label>
+                <mat-select matNativeControl name="coordinate" required formControlName="coordinate">
+                    <mat-option *ngFor="let coordinate of coordinateArray" [value]="coordinate.coordinateId">{{ coordinate.coordinateCode }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="button-container" type="submit">
+            <button mat-button>Submit</button>
+        </div>
+    </form>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

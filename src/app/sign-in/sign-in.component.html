@@ -1,0 +1,124 @@
+<div>
+    <mat-toolbar>
+      <div class="image-container">
+          <img src='assets/image/logo_transparent.png' width="15%"/>
+      </div>
+    </mat-toolbar>
+</div>
+
+<div class="centered alert-box-container" *ngIf="!registerForm">
+    <div class="alert-title">
+        Sign In Account
+    </div>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="input-label">
+            USERNAME
+        </div>
+        <div class="input-field">
+
+            <mat-form-field>
+                <mat-icon>person_rounded</mat-icon>
+                <!-- <mat-label>dsds</mat-label> -->
+                <input matInput type="text" formControlName="username" ngModel/>
+            </mat-form-field>
+
+            <!-- <span class="material-icons-round inline marginless">
+                person
+            </span> -->
+            <!-- <span >
+                <img src='assets/image/person-icon.svg' width="25px"/>
+            </span> -->
+            <!-- <input type="text" name="username" ngModel/> -->
+
+        </div>
+
+        <div class="input-label">
+            PASSWORD
+        </div>
+        <div class="input-field">
+
+            <mat-form-field>
+                <mat-icon>lock_rounded</mat-icon>
+                <!-- <mat-label>dsds</mat-label> -->
+                <input matInput type="password" formControlName="password" ngModel/>
+            </mat-form-field>
+        </div>
+        <!-- <div class="forgot-text">
+            Forgot your password?
+        </div> -->
+        <button mat-raised-button type="submit">
+            Sign In
+        </button>
+
+        <div class="register-text" (click)="showRegisterForm()">
+          Register Account
+        </div>
+    </form>
+</div>
+
+<div class="centered2 alert-box-container2" *ngIf="registerForm">
+  <div class="alert-title">
+      Register Account
+  </div>
+  <form [formGroup]="registerUserForm" (ngSubmit)="onRegister()">
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" required ngModel/>
+        </mat-form-field>
+      </div>
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" required formControlName="email" ngModel/>
+        </mat-form-field>
+      </div>
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" required formControlName="phoneNumber" ngModel/>
+        </mat-form-field>
+      </div>
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput type="text" required formControlName="address" ngModel/>
+        </mat-form-field>
+      </div>
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput type="text" required formControlName="username" ngModel/>
+        </mat-form-field>
+      </div>
+      <div class="input-field2">
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" required formControlName="password" ngModel/>
+            <mat-error class="error-message" *ngIf="registerUserForm.get('password')">Min length shall be at least 8</mat-error>
+        </mat-form-field>
+      </div>
+      <div style="height:17px">
+
+      </div>
+      <div class="input-field-image">
+          <mat-label>Profile Image</mat-label>
+          <input type="file" formControlName="image" (change)="uploadImage($event)" required ngModel/>
+      </div>
+
+      <button mat-raised-button type="submit">
+          Register Account
+      </button>
+
+      <div class="register-text" (click)="showRegisterForm()">
+        Login Account
+      </div>
+  </form>
+</div>
+
+<div style="height:120px">
+
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>
+

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Current Capacity: {{ currentLimit }}</h1>
+
+<form #updateLimitForm="ngForm" (ngSubmit)="onSubmit(updateLimitForm)">
+    <div mat-dialog-content class="content">
+        <mat-form-field appearance="outline">
+            <input matInput type="number" name="newLimit" ngModel placeholder="New Limit" min=0 required [defaultValue]="currentLimit"/>
+        </mat-form-field>
+    </div>
+    <div class="button-container-cancel">
+        <button mat-button (click)="onDismiss()" type="button">Cancel</button>
+    </div>
+    <div class="button-container-save" type="submit">
+        <button mat-button>Save</button>
+    </div>
+</form>
+
+<ngx-loading [show]="loading"></ngx-loading>

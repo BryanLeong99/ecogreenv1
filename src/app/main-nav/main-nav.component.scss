@@ -1,0 +1,42 @@
+mat-sidenav-content mat-toolbar {
+  background-color: transparent;
+  height: 0;
+}
+
+mat-sidenav-content {
+  background-color: #F0F2FF;
+}
+
+mat-nav-list {
+  font-family: 'Nunito';
+  font-weight: 500;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  // box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+  .image-container {
+    text-align: center;
+    margin-top: 10%;
+    object-fit: cover;
+  }
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.active-list-item {
+  border-right: 4px solid #2728F2;
+  background-color: #F0F2FF;
+}

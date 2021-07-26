@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <!-- Menu -->
+      <div class="image-container">
+        <img src='assets/image/ap-lib.svg' width="90%"/>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="navigate('dashboard')" href="#" routerLink="/dashboard" routerLinkActive="active-list-item">Dashboard</a>
+      <a mat-list-item (click)="navigate('create-booking')" href="#" routerLink="/create-booking" routerLinkActive="active-list-item">Book Collector</a>
+      <a mat-list-item (click)="navigate('my-booking')" href="#" routerLink="/my-booking" routerLinkActive="active-list-item">My Booking</a>
+      <a mat-list-item (click)="navigate('transaction-history')" href="#" routerLink="/transaction-history" routerLinkActive="active-list-item">My Earning</a>
+      <a mat-list-item (click)="navigate('recycling-centre')" href="#" routerLink="/recycling-centre" routerLinkActive="active-list-item">Recycling Centre</a>
+      <a mat-list-item (click)="navigate('booking-request')" href="#" routerLink="/booking-request" routerLinkActive="active-list-item">Booking Received</a>
+      <a mat-list-item (click)="navigate('discussion-room-booking')" href="#" routerLink="/discussion-room-booking" routerLinkActive="active-list-item">Room Booking</a>
+      <a mat-list-item (click)="navigate('upcoming-booking')" href="#" routerLink="/upcoming-booking" routerLinkActive="active-list-item">Upcoming Booking</a>
+      <a mat-list-item (click)="navigate('room-operation-hour')" href="#" routerLink="/room-operation-hour" routerLinkActive="active-list-item">Room Operation Hour</a>
+      <a mat-list-item (click)="navigate('register-new-book')" href="#" routerLink="/register-new-book" routerLinkActive="active-list-item">Register New Book</a>
+      <a mat-list-item (click)="navigate('register-new-item')" href="#" routerLink="/register-new-item" routerLinkActive="active-list-item">Register New Item</a>
+      <a mat-list-item (click)="navigate('modify-book-details')" href="#" routerLink="/modify-book-details" routerLinkActive="active-list-item">Modify Book Details</a>
+      <a mat-list-item (click)="navigate('modify-item-details')" href="#" routerLink="/modify-item-details" routerLinkActive="active-list-item">Modify Item Details</a>
+      <a mat-list-item (click)="navigate('pay-fine')" href="#" routerLink="/pay-fine" routerLinkActive="active-list-item">Pay Fine</a>
+      <a mat-list-item (click)="navigate('ill')" href="#" routerLink="/ill" routerLinkActive="active-list-item">Interlibrary Loan (ILL)</a>
+      <a mat-list-item (click)="navigate('approve-registration')" href="#" routerLink="/approve-registration" routerLinkActive="active-list-item">Registration Request</a>
+      <a mat-list-item (click)="signOut()" href="#" style="color: '#FF0000'">Sign Out</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!-- <span style="font-family: 'Nunito';">ap-lib</span> -->
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
