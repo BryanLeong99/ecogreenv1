@@ -1,0 +1,129 @@
+<h1>Record Payment Form</h1>
+<div mat-dialog-content class="content">
+<form (ngSubmit)="onSubmit()" [formGroup]="paymentForm">
+  <div class="input-list">
+    <div *ngFor="let item of itemArray">
+      <div class="title" *ngIf="item.raw_item == 'Aluminium'">
+        <div>
+          Aluminium
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Aluminium" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Cardboard'">
+        <div>
+          Cardboard
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Cardboard" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Copper'">
+        <div>
+          Copper
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Copper" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Glass'">
+        <div>
+          Glass
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Glass" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Iron'">
+        <div>
+          Iron
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Iron" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Paper'">
+        <div>
+          Paper
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Paper" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+      <div class="title" *ngIf="item.raw_item == 'Plastic'">
+        <div>
+          Plastic
+        </div>
+        <div>
+          :
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput type="number" formControlName="Plastic" min=0/>
+          </mat-form-field>
+        </div>
+        <div>
+          kg
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="button-container-cancel">
+      <button mat-button (click)="onDismiss()" type="button">Cancel</button>
+  </div>
+  <div class="button-container-save" type="submit">
+      <button mat-button>Submit</button>
+  </div>
+  </form>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

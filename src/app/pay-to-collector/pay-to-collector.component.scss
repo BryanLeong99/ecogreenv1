@@ -1,0 +1,122 @@
+mat-form-field {
+  // width: 100%;
+  width: 100px;
+  font-size: 16px;
+  margin-top: 20px;
+  textarea {
+      resize: none;
+  }
+}
+
+mat-checkbox {
+  font-family: 'Nunito';
+  font-size: 22px;
+  font-weight: 700;
+  width: 80%;
+  div {
+    margin-left: 10px;
+  }
+}
+
+.checkbox-container {
+  font-family: 'Nunito';
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  width: 40%;
+  align-items: center;
+  div {
+    width: 65%;
+  }
+}
+
+.total {
+  font-weight: 800;
+  font-size: 22px;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+  background-color: #2728F2 !important; /* Red background for example */
+}
+
+form {
+  height: 100%;
+  margin-bottom: 100px;
+}
+
+.main-container {
+  padding: 3.3% 2.5% 3.3% 2.5%;
+  width: 100%;
+  height: 98%;
+  // margin-bottom: 100px;
+}
+
+.page-title {
+  font-family: 'Nunito';
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 2.5%;
+}
+
+.main-section-container {
+  width: 100%;
+  height: 82%;
+  background-color: white;
+  padding: 3% 2%;
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  display: flex;
+  flex-direction: column;
+  mat-form-field:nth-child(1) {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: -10px;
+  }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.button-container {
+  text-align: left;
+  margin-top: 2%;
+  button {
+      width: 100%;
+      background-color: #1070A1;
+      border-radius: 13px;
+      color: white;
+      font-family: 'Nunito';
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 10px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+  }
+}
+
+.section-title {
+  font-size: 20px;
+  font-family: 'Nunito';
+  font-weight: 700;
+  margin-bottom: 1%;
+}
+
+.section-break {
+  height: 1%;
+}
+
+.lon-lat-field {
+  width: 99.7%;
+  display: flex;
+  button {
+    border-radius: 40px;
+    background-color: #2728F2;
+    margin-bottom: 22px;
+    margin-top: 5px;
+    color: white;
+    margin-left: 10px;
+  }
+}

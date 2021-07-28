@@ -41,4 +41,8 @@ export class AuthenticateService {
 
     return this.http.post<any>(url, body, { headers });
   }
+
+  hash(input: string) {
+    return sha256(input);
+  }
 }

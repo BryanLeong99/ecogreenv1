@@ -1,0 +1,53 @@
+<div class="main-container">
+  <div class="page-title">
+      My Profile
+  </div>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+      <div class="main-section-container">
+          <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" name="name" ngModel required formControlName="name" [(ngModel)]="name"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" name="email" ngModel required formControlName="email" [(ngModel)]="email"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput type="text" name="address" ngModel required formControlName="address" [(ngModel)]="address"/>
+          </mat-form-field>
+          <div class="lon-lat-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Latitude</mat-label>
+              <input matInput type="number" name="latitude" ngModel required formControlName="latitude" [(ngModel)]="latitude"/>
+            </mat-form-field>
+            <button mat-button type="button" (click)="getLocation()">Locate</button>
+          </div>
+          <div class="lon-lat-field">
+            <mat-form-field appearance="outline">
+              <mat-label>Longitude</mat-label>
+              <input matInput type="number" name="longitude" ngModel required formControlName="longitude" [(ngModel)]="longitude"/>
+            </mat-form-field>
+            <button mat-button type="button" (click)="getLocation()">Locate</button>
+          </div>
+          <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="text" name="phoneNumber" ngModel required formControlName="phoneNumber" [(ngModel)]="phoneNumber"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Existing Password</mat-label>
+              <input matInput type="text" name="existingPassword" ngModel formControlName="existingPassword"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>New Password</mat-label>
+            <input matInput type="text" name="newPassword" ngModel formControlName="newPassword"/>
+          </mat-form-field>
+      </div>
+      <div class="button-container" type="submit">
+          <button mat-button>Save</button>
+      </div>
+  </form>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

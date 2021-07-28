@@ -2,4 +2,74 @@
   <div class="page-title">
     Booking Received
   </div>
+
+  <div *ngIf="bookingArray.length == 0">
+    No booking request.
+  </div>
+
+  <div>
+    <div *ngFor="let booking of bookingArray">
+      <div class="booking-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+                <span class="material-icons-round">archive</span>
+                </span>
+          </div>
+          <div>
+            {{ booking.household_name }}
+          </div>
+          <div>
+            {{ booking.household_address }}
+          </div>
+          <div>
+            {{ booking.scheduled_time }}
+          </div>
+          <div>
+            Status: {{ booking.status }}
+          </div>
+        </div>
+        <div class="right-section">
+          <button class="accept" *ngIf="booking.status == 'Pending'" mat-button (click)="updateBookingStatus('Accepted', booking.row_key, booking.partition_key)">
+            Accept
+          </button>
+          <button class="reject" *ngIf="booking.status == 'Pending'" mat-button (click)="updateBookingStatus('Rejected', booking.row_key, booking.partition_key)">
+            Reject
+          </button>
+          <button *ngIf="booking.status == 'Accepted'" mat-button (click)="updateBookingStatus('Collecting', booking.row_key, booking.partition_key)">
+            Collect
+          </button>
+          <button *ngIf="booking.status == 'Collecting'" mat-button (click)="promptPayment(booking.partition_key, booking.row_key, booking.partition_key, booking.collector_name, booking.row_key, booking.household_id, booking.household_name)">
+            Pay
+          </button>
+          <button mat-button (click)="locate(booking.household_longitude, booking.household_latitude)">
+            Locate
+          </button>
+          <button mat-button (click)="viewContact(booking.row_key, booking.household_id)">
+            View Contact
+          </button>
+        </div>
+      </div>
+      <div *ngIf="expandBookingID == booking.row_key && email != '' && phoneNumber != '' " class="details-container">
+        <div class="general-info-box">
+          <div class="item-text">
+            Collector's Email Address:
+            <div class="item-content">
+              {{ email }}
+            </div>
+          </div>
+
+          <div class="item-text">
+            Collector's Phone Number:
+            <div class="item-content">
+              {{ phoneNumber }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>

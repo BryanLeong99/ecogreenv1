@@ -170,7 +170,7 @@ export class SignInComponent implements OnInit {
           'success');
           me.registerForm = !me.registerForm;
         } else {
-          me.openDialog2('Duplicate Account;Your username has been used in another account.',
+          me.openDialog2('Duplicate Account;Your username or email has been used in another account.',
         'fail');
         }
       },

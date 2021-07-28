@@ -72,4 +72,12 @@ export class RecyclingCentreComponent implements OnInit {
     this.expandCentreID = id;
   }
 
+  locate(longitude: number, latitude: number) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Got position", position.coords);
+
+      window.open('https://www.google.com/maps/dir/?api=1&origin=' + position.coords.latitude + ',' + position.coords.longitude + '&destination=' + latitude + ',' + longitude, '_blank');
+    });
+  }
+
 }

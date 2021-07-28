@@ -42,6 +42,11 @@
           <div class="address">
             {{ centre.address }}
           </div>
+          <div>
+            <button mat-button (click)="locate(centre.longitude, centre.latitude)">
+              Locate
+            </button>
+          </div>
         </div>
         <div class="general-info-box">
           <div class="item-text">

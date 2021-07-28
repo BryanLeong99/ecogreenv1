@@ -1,0 +1,85 @@
+<div class="main-container">
+  <div class="page-title">
+      Item Accepted
+  </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="itemForm">
+    <div class="main-section-container">
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Aluminium" [(ngModel)]="aluminiumItem">
+          <div>Aluminium</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="aluminiumInput" ngModel formControlName="aluminiumInput" [(ngModel)]="aluminiumPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Cardboard" [(ngModel)]="cardboardItem">
+          <div>Cardboard</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="cardboardInput" ngModel formControlName="cardboardInput" [(ngModel)]="cardboardPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Copper" [(ngModel)]="copperItem">
+          <div>Copper</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="copperInput" ngModel formControlName="copperInput" [(ngModel)]="copperPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Glass" [(ngModel)]="glassItem">
+          <div>Glass</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="glassInput" ngModel formControlName="glassInput" [(ngModel)]="glassPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Iron" [(ngModel)]="ironItem">
+          <div>Iron</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="ironInput" ngModel formControlName="ironInput" [(ngModel)]="ironPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Paper" [(ngModel)]="paperItem">
+          <div>Paper</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="paperInput" ngModel formControlName="paperInput" [(ngModel)]="paperPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+      <div class="checkbox-container">
+        <mat-checkbox formControlName="Plastic" [(ngModel)]="plasticItem">
+          <div>Plastic</div>
+        </mat-checkbox>
+        : &nbsp;&nbsp; RM &nbsp;
+        <mat-form-field appearance="outline">
+          <input matInput type="number" name="plasticInput" ngModel formControlName="plasticInput" [(ngModel)]="plasticPrice" min=0/>
+        </mat-form-field>
+      </div>
+
+    </div>
+    <div class="button-container" type="submit">
+        <button mat-button>Save</button>
+    </div>
+  </form>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

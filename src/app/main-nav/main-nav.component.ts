@@ -19,6 +19,8 @@ export class MainNavComponent {
 
   id = "";
 
+  role = "";
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     private cookieService: CookieService,
@@ -35,6 +37,8 @@ export class MainNavComponent {
     // }
     // drawer.style.position = "absolute";
     // drawer.style.zIndex = "-50";
+
+    this.role = this.cookieService.get('role');
   }
 
   navigate(page: string): void {

@@ -11,7 +11,7 @@
             <div class="section-cards-visit-chart">
                 <div class="card-title-section">
                     <mat-icon [inline]="true">circle</mat-icon>
-                    Visit Statistics
+                    {{ chartTitle }}
                 </div>
                 <div class="chart-container">
                     <canvas baseChart
@@ -25,95 +25,17 @@
                     </canvas>
                 </div>
             </div>
-            <div class="section-cards-left-bottom">
-                <div class="section-cards-total-visit">
-                    <div class="card-title-section">
-                        <mat-icon [inline]="true">circle</mat-icon>
-                        Total Visit
-                    </div>
-                    <div class="small-card-content-section">
-                        <div class="content-section">
-                            <div>
-                                <div class="small-card-value">{{ totalVisit.toLocaleString() }}</div>
-                                <div class="small-card-after-value-text">Visit(s)</div>
-                            </div>
-
-                            <div class="small-card-value-percentage">
-                                <span *ngIf="visitPercentage >= 0">+</span>{{ visitPercentage.toFixed(2) }}% than yesterday
-                            </div>
-                        </div>
-                        <div class="icon-section">
-                            <span class="material-icons-round icon-up-container" *ngIf="visitPercentage >= 0">
-                                trending_up
-                            </span>
-                            <span class="material-icons-round icon-down-container" *ngIf="visitPercentage < 0">
-                                trending_down
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="section-cards-total-loan">
-                    <div class="card-title-section">
-                        <mat-icon [inline]="true">circle</mat-icon>
-                        Total Loan
-                    </div>
-                    <div class="small-card-content-section">
-                        <div>
-                            <span class="small-card-value">{{ totalLoan.toLocaleString() }}</span>
-                            <span class="small-card-after-value-text">Loan(s)</span>
-
-                            <div class="small-card-value-percentage">
-                                <span *ngIf="loanPercentage >= 0">+</span>{{ loanPercentage.toFixed(2) }}% than yesterday
-                            </div>
-                        </div>
-                        <div>
-                            <span class="material-icons-round icon-up-container" *ngIf="loanPercentage >= 0">
-                                trending_up
-                            </span>
-                            <span class="material-icons-round icon-down-container" *ngIf="loanPercentage < 0">
-                                trending_down
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="section-cards-right">
+        <!-- <div class="section-cards-right">
             <div class="section-cards-current-visit">
                 <div class="card-title-section-container">
                     <div class="card-title-section">
                         <mat-icon [inline]="true">circle</mat-icon>
                         Current Capacity
                     </div>
-                    <button mat-button (click)="openDialog()">
-                        Update Limit
-                    </button>
                 </div>
-                <div class="current-visit-content-section">
-                    <div class="current-visit-total">
-                        {{ totalCurrentVisit }}
-                    </div>
-                    <div class="current-visit-total-text">
-                        Active Patron(s)
-                    </div>
-                    <circle-progress
-                    [percent]="capacityPercentage"
-                    [animation]="true"
-                    [showTitle]="true"
-                    [showSubtitle]="false"
-                    [subtitleColor]="subtitleColor"
-                    [backgroundColor]="backgroundColor"
-                    [titleFontSize]="titleFontSize"
-                    [unitsFontSize]="titleFontSize"
-                    [unitsColor]="titleColor"
-                    [titleColor]="titleColor"
-                    [subtitleFontSize]="subtitleFontSize"
-                    [subtitleFontWeight]="subtitleFontWeight"
-                    [titleFontWeight]="titleFontWeight"
-                    >
-                    </circle-progress>
-                </div>
+
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

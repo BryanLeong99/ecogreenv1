@@ -3,8 +3,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import { UpdateLimitAlertComponent } from '../update-limit-alert/update-limit-alert.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
 
   labelArray: string[] = [];
   dataArray: number[] = [];
+
+  chartTitle = "Statistic";
 
   totalVisit: number = 0;
   visitPercentage: number = 0.0;
@@ -32,7 +34,6 @@ export class DashboardComponent implements OnInit {
   titleColor = "white";
   titleFontFamily = "Nunito";
   titleFontWeight = "700";
-  // subtitle = "Capacity";
   subtitleColor = "white"
   subtitleFontSize = "20px";
   subtitleFontWeight = "600";
@@ -55,22 +56,19 @@ export class DashboardComponent implements OnInit {
       }],
     }
   };
-  // barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   barChartLabels = this.labelArray;
-  barChartType: ChartType = 'line';
+  barChartType: ChartType = 'bar';
   barChartLegend = false;
   barChartData = [
     {
-      // data: [65, 59, 80, 81, 56, 55, 40],
       data: this.dataArray,
       label: 'Series A',
-      // pointRadius: 0
     }
   ];
   barChartColors: Color[] = [
     {
-      borderColor: '#1070A1',
-      backgroundColor: '#1070A1',
+      borderColor: '#758BFD',
+      backgroundColor: '#758BFD',
     }
   ];
 
@@ -85,59 +83,77 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let id = this.cookieService.get('id');
+    let role = this.cookieService.get('role');
+    this.retrieveStatistic(id, role).subscribe((response: any) => {
+      console.log(response);
+      let priceItemSplit: any;
+
+      response.forEach((element: any) => {
+        let month: any = "";
+        let amount = 0.0;
+        let counter = 0;
+
+        element.forEach((element2: any) => {
+          let currentTotal = 0.0;
+          console.log(new DatePipe('en-US').transform(new Date((Date.parse(element2.time_created))), "MMM / YYYY"));
+
+          month = new DatePipe('en-US').transform(new Date((Date.parse(element2.time_created))), "MMM / YYYY");
+
+          priceItemSplit = element2.price_of_items.split(";");
+
+          for (let counter = 1; counter < priceItemSplit.length; counter += 2) {
+            currentTotal += Number.parseFloat(priceItemSplit[counter]);
+          }
+
+          amount += currentTotal;
+
+          if (element.length - 1 == counter) {
+            this.dataArray.push(amount);
+            this.labelArray.push(month);
+          }
+
+          counter++;
+
+        });
+      });
+
+      console.log(this.dataArray);
+    }, (error: any) => {
+      console.log(error);
+    });
+
+
+
+
     if (sessionStorage.getItem('first') == 'true') {
       location.reload();
       sessionStorage.setItem('first', 'false');
     }
-    this.retrieveUserDetails(this.cookieService.get('authentication-token')).subscribe(data => {
-      console.log(data);
-      this.name = JSON.parse(data)[0].fullName;
-    });
 
-    this.retrieveVisitStatistics().subscribe(data => {
-      console.log(data);
-      JSON.parse(data).forEach((element: any) => {
-        this.labelArray.unshift(element.statDate);
-        this.dataArray.unshift(element.total);
-        this.calculateVisitPercentage();
-        this.chartReady = true;
-      });
-    });
+    this.name = this.cookieService.get('name');
 
-    this.retrieveTotalLoan().subscribe(data => {
-      console.log(data);
-      this.calculateLoanPercentage(JSON.parse(data).countToday, JSON.parse(data).countLastDay);
-    });
+    this.chartReady = true;
 
-    this.retrieveVisitLimit().subscribe(data => {
-      console.log(data);
-      this.calculateCapacityPercentage(JSON.parse(data).currentTotal, JSON.parse(data).totalLimit);
-    });
   }
 
-  retrieveUserDetails(userToken: string) {
-    let url = 'https://zj9ohmm9uh.execute-api.us-east-1.amazonaws.com/dev/user/details?' +
-    'user_token=' + userToken;
+  retrieveStatistic(id: string, role: string) {
+    let url: string;
 
-    return this.http.get(url, {responseType: 'text'});
-  }
+    if (role == "Admin") {
+      url = 'https://ecogreen20210725013243.azurewebsites.net/Payment/Statistic/Cashout/' + id;
+      this.chartTitle = "Cashout Statistic";
+    } else {
+      url = 'https://ecogreen20210725013243.azurewebsites.net/Payment/Statistic/Earning/' + id;
+      this.chartTitle = "Earning Statistic";
+    }
 
-  retrieveVisitStatistics() {
-    let url = 'https://zj9ohmm9uh.execute-api.us-east-1.amazonaws.com/dev/visit/statistics';
+    let headers = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json'
+    };
 
-    return this.http.get(url, {responseType: 'text'});
-  }
-
-  retrieveTotalLoan() {
-    let url = 'https://zj9ohmm9uh.execute-api.us-east-1.amazonaws.com/dev/loan/total';
-
-    return this.http.get(url, {responseType: 'text'});
-  }
-
-  retrieveVisitLimit() {
-    let url = 'https://zj9ohmm9uh.execute-api.us-east-1.amazonaws.com/dev/visit/current';
-
-    return this.http.get(url, {responseType: 'text'});
+    return this.http.get(url, {headers: headers});
   }
 
   calculateVisitPercentage() {
@@ -148,30 +164,5 @@ export class DashboardComponent implements OnInit {
     } else {
       this.visitPercentage = ((this.dataArray[this.dataArray.length - 2] - this.totalVisit) / this.totalVisit) * 100;
     }
-  }
-
-  calculateLoanPercentage(loanToday: number, loanLastDay: number) {
-    this.totalLoan = loanToday;
-
-    if (loanToday > loanLastDay) {
-      this.loanPercentage = ((loanLastDay - loanToday) - this.totalLoan) * 100 * -1;
-    } else {
-      this.loanPercentage = ((loanLastDay - loanToday) - this.totalLoan) * 100;
-    }
-  }
-
-  calculateCapacityPercentage(currentTotal: number, totalLimit: number) {
-    this.totalCurrentVisit = currentTotal;
-    this.totalLimit = totalLimit;
-
-    this.capacityPercentage = (currentTotal / totalLimit) * 100;
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(UpdateLimitAlertComponent, {
-      width: '390px',
-      height: '360px',
-      data: {currentLimit: this.totalLimit}
-    });
   }
 }

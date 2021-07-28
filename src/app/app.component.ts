@@ -18,8 +18,9 @@ export class AppComponent {
   ) {}
 
   tid: any;
+  tid2: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     // this.cookieService.set('authentication-token', '');
     this.authenticationToken = this.cookieService.get('id');
     // console.log(this.authenticationToken);
@@ -34,18 +35,19 @@ export class AppComponent {
     }
 
     console.log('refreshed');
-
-    this.tid = setInterval(() => { this.checkCookie() }, 5000);
+    // this.tid = setInterval(() => { this.checkCookie() }, 5000);
   }
 
   ngAfterViewInit() {
     // this.tid = setInterval(this.checkCookie, 2000);
   }
 
-  checkCookie() {
+  async checkCookie() {
     // console.log('triggered');
     // this.authenticationToken = this.cookieService.get('id');
     if (sessionStorage.getItem('navigate') == 'true') {
+      this.tid2 = await new Promise(f => setTimeout(f, 3000));
+      // console.log('waiting');
       this.ngOnInit();
     }
   }

@@ -14,6 +14,8 @@ export class CreateBookingComponent implements OnInit {
   collectorArray: any[] = [];
   expandCollectorID: string = "";
 
+  loading = false;
+
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
@@ -53,6 +55,55 @@ export class CreateBookingComponent implements OnInit {
   }
 
 
+  rate(collectorID: string, collectorName: string) {
+    var dropdownInput: any = document.getElementById(collectorID);
+
+    let ownerID = this.cookieService.get('id');
+    let ownerName = this.cookieService.get('name');
+
+    let url = 'https://ecogreen20210725013243.azurewebsites.net/Rating/Rate/';
+
+    let headers = {
+      'accept': 'text/plain',
+      'Content-Type': 'application/json'
+    };
+
+    let body = {
+      'partition_key': collectorID,
+      'collector_name': collectorName,
+      'owner_id': ownerID,
+      'owner_name': ownerName,
+      'rating_value': Number.parseInt(dropdownInput.value)
+    };
+
+    console.log(body);
+
+    this.loading = true;
+
+    this.http.put<any>(url, body, { headers }).subscribe((response: any) => {
+      console.log(response);
+      this.loading = false;
+
+      this.collectorArray.splice(0);
+
+      let me: any = this;
+
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("Got position", position.coords);
+
+        me.retrieveAllCollectors(position.coords.longitude, position.coords.latitude).subscribe((response: any) => {
+          console.log(response);
+
+          this.collectorArray = response;
+        });
+      });
+    }, (error: any) => {
+      console.log(error);
+      this.loading = false;
+    });
+  }
+
+
   onRegisterForm(collectorID: string, collectorName: string) {
     var householdID = this.cookieService.get('id');
 
@@ -71,6 +122,8 @@ export class CreateBookingComponent implements OnInit {
       });
     });
   }
+
+
 
 
 }

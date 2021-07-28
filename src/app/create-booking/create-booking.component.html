@@ -25,10 +25,18 @@
             Status: {{ collector.status }}
           </div>
           <div>
-            Rating: {{ collector.rating }}
+            Rating: {{ collector.rating.toFixed(1) }}
           </div>
         </div>
         <div class="right-section">
+          <label>Rate &nbsp;</label>
+          <select [id]="collector.user_id" (change)="rate(collector.user_id, collector.name)">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select>
           <button mat-button (click)="viewDetails(collector.id)">
             View Details
           </button>
@@ -43,7 +51,7 @@
         </div>
         <div class="general-info-box">
           <div class="item-text">
-            Items
+            Items Accepted
           </div>
           <div *ngFor="let item of collector.items">
             {{ item.raw_item }}: RM {{ item.charging_rate_per_kg.toFixed(2) }}
@@ -63,3 +71,5 @@
     </div>
   </div>
 </div>
+
+<ngx-loading [show]="loading"></ngx-loading>

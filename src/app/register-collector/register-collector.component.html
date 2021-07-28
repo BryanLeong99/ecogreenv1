@@ -1,0 +1,47 @@
+<div class="main-container">
+  <div class="page-title">
+      Register Collector
+  </div>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+      <div class="main-section-container">
+          <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" name="name" ngModel required formControlName="name"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="text" name="email" ngModel required formControlName="email"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input matInput type="text" name="address" ngModel required formControlName="address"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="text" name="phoneNumber" ngModel required formControlName="phoneNumber"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Provided Username</mat-label>
+            <input matInput type="text" name="username" ngModel formControlName="username" required/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Default Password</mat-label>
+            <input matInput type="text" name="defaultPassword" ngModel formControlName="defaultPassword" required/>
+          </mat-form-field>
+
+          <div style="height:17px">
+
+          </div>
+          <div class="input-field-image">
+              <mat-label>Upload Profile Image &nbsp; &nbsp;</mat-label>
+              <input type="file" formControlName="image" (change)="uploadImage($event)" required ngModel/>
+          </div>
+      </div>
+      <div class="button-container" type="submit">
+          <button mat-button>Submit</button>
+      </div>
+  </form>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

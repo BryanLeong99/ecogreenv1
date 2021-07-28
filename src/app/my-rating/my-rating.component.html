@@ -1,0 +1,30 @@
+<div class="main-container">
+  <div class="page-title">
+    My Rating (Average: {{ averageRating.toFixed(1) }})
+  </div>
+
+  <div *ngIf="ratingArray.length == 0">
+    No past rating.
+  </div>
+
+  <div>
+    <div *ngFor="let rating of ratingArray">
+      <div class="rating-container">
+        <div class="left-section">
+          <div class="info-icon-container">
+            <span class="material-icons-round">
+              <span class="material-icons-round">star</span>
+            </span>
+          </div>
+          <div>
+            {{ rating.owner_name }}
+          </div>
+          <div>
+            Rating: {{ rating.rating_value }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
