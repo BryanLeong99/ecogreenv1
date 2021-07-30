@@ -54,7 +54,9 @@
             Items Accepted
           </div>
           <div *ngFor="let item of collector.items">
-            {{ item.raw_item }}: RM {{ item.charging_rate_per_kg.toFixed(2) }}
+            <div *ngIf="item.charging_rate_per_kg != 0">
+              {{ item.raw_item }}: RM {{ item.charging_rate_per_kg.toFixed(2) }}
+            </div>
           </div>
         </div>
         <div class="schedule-box">

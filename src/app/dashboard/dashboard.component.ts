@@ -30,6 +30,9 @@ export class DashboardComponent implements OnInit {
   capacityPercentage: number = 0.0;
   totalLimit: number = 0;
 
+  loading = false;
+  role = "";
+
   titleFontSize = "80px";
   titleColor = "white";
   titleFontFamily = "Nunito";
@@ -84,8 +87,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.cookieService.get('id');
-    let role = this.cookieService.get('role');
-    this.retrieveStatistic(id, role).subscribe((response: any) => {
+    this.role = this.cookieService.get('role');
+    this.retrieveStatistic(id, this.role).subscribe((response: any) => {
       console.log(response);
       let priceItemSplit: any;
 
@@ -164,5 +167,32 @@ export class DashboardComponent implements OnInit {
     } else {
       this.visitPercentage = ((this.dataArray[this.dataArray.length - 2] - this.totalVisit) / this.totalVisit) * 100;
     }
+  }
+
+  updateLocation() {
+    let id = this.cookieService.get('id');
+    this.loading = true;
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Got position", position.coords);
+
+      this.submitUpdate(position.coords.longitude, position.coords.latitude, id).subscribe((response: any) => {
+        console.log(response);
+        this.loading = false;
+      },
+      (error: any) => {
+        console.log(error);
+        this.loading = false;
+      });
+    });
+  }
+
+  submitUpdate(longitude: number, latitude: number, id: string) {
+    let url = 'https://ecogreen20210725013243.azurewebsites.net/Collector/Update/Location/' + longitude + "/" + latitude + "/" + id;
+
+    let headers = {
+      'accept': 'text/plain'
+    };
+
+    return this.http.patch(url, {}, { headers: headers });
   }
 }

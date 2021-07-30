@@ -71,25 +71,25 @@ export class ItemAcceptedComponent implements OnInit {
       this.itemArray = response;
 
       this.itemArray.forEach(element => {
-        if (element.raw_item == "Aluminium") {
+        if (element.raw_item == "Aluminium" && element.charging_rate_per_kg != 0) {
           this.aluminiumItem = true;
           this.aluminiumPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Cardboard") {
+        } else if (element.raw_item == "Cardboard" && element.charging_rate_per_kg != 0) {
           this.cardboardItem = true;
           this.cardboardPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Copper") {
+        } else if (element.raw_item == "Copper" && element.charging_rate_per_kg != 0) {
           this.copperItem = true;
           this.copperPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Glass") {
+        } else if (element.raw_item == "Glass" && element.charging_rate_per_kg != 0) {
           this.glassItem = true;
           this.glassPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Iron") {
+        } else if (element.raw_item == "Iron" && element.charging_rate_per_kg != 0) {
           this.ironItem = true;
           this.ironPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Paper") {
+        } else if (element.raw_item == "Paper" && element.charging_rate_per_kg != 0) {
           this.paperItem = true;
           this.paperPrice = element.charging_rate_per_kg;
-        } else if (element.raw_item == "Plastic") {
+        } else if (element.raw_item == "Plastic" && element.charging_rate_per_kg != 0) {
           this.plasticItem = true;
           this.plasticPrice = element.charging_rate_per_kg;
         }
@@ -135,49 +135,58 @@ export class ItemAcceptedComponent implements OnInit {
     return this.http.get(url, {headers: headers});
   }
 
+  // submit the values through API calling
   onSubmit() {
     console.log(this.itemForm.value);
 
     let updatedItemArray: any[] = [];
 
+    // create am array of items
     updatedItemArray.push(
       {
+        'id': this.itemArray[0].id,
         'raw_item':'Aluminium',
         'charging_rate_per_kg': this.itemForm.value.aluminiumInput,
         'exists': this.itemForm.value.Aluminium,
         'item_id': this.pureItemArray[0].id,
       },
       {
+        'id': this.itemArray[1].id,
         'raw_item': 'Cardboard',
         'charging_rate_per_kg': this.itemForm.value.cardboardInput,
         'exists': this.itemForm.value.Cardboard,
         'item_id': this.pureItemArray[1].id,
       },
       {
+        'id': this.itemArray[2].id,
         'raw_item': 'Copper',
         'charging_rate_per_kg': this.itemForm.value.copperInput,
         'exists': this.itemForm.value.Copper,
         'item_id': this.pureItemArray[2].id,
       },
       {
+        'id': this.itemArray[3].id,
         'raw_item': 'Glass',
         'charging_rate_per_kg': this.itemForm.value.glassInput,
         'exists': this.itemForm.value.Glass,
         'item_id': this.pureItemArray[3].id,
       },
       {
+        'id': this.itemArray[4].id,
         'raw_item': 'Iron',
         'charging_rate_per_kg': this.itemForm.value.ironInput,
         'exists': this.itemForm.value.Iron,
         'item_id': this.pureItemArray[4].id,
       },
       {
+        'id': this.itemArray[5].id,
         'raw_item': 'Paper',
         'charging_rate_per_kg': this.itemForm.value.paperInput,
         'exists': this.itemForm.value.Paper,
         'item_id': this.pureItemArray[5].id,
       },
       {
+        'id': this.itemArray[5].id,
         'raw_item': 'Plastic',
         'charging_rate_per_kg': this.itemForm.value.plasticInput,
         'exists': this.itemForm.value.Plastic,
@@ -187,7 +196,7 @@ export class ItemAcceptedComponent implements OnInit {
 
     console.log(updatedItemArray);
 
-      let collectorID = this.cookieService.get('id');
+    let collectorID = this.cookieService.get('id');
 
     let url = 'https://ecogreen20210725013243.azurewebsites.net/CollectorItem/Update/' + collectorID;
 
@@ -200,7 +209,8 @@ export class ItemAcceptedComponent implements OnInit {
 
     this.loading = true;
 
-    this.http.post<any>(url, body, { headers }).subscribe((response: any) => {
+    // make a rest api request with patch method by passing the url, header and body
+    this.http.patch<any>(url, body, { headers }).subscribe((response: any) => {
       console.log(response);
       this.loading = false;
 

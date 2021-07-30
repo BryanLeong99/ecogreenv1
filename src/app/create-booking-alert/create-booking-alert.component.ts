@@ -39,10 +39,13 @@ export class CreateBookingAlertComponent implements OnInit {
   }
 
   onSubmit() {
+    // check if the input is valid
     if (!this.bookingForm.valid) {
       this.openDialog('Invalid Input;Your input is invalid.', 'fail', false);
     } else {
       this.loading = true;
+
+      // call API
       this.confirmSubmit().subscribe((response: any) => {
         console.log(response);
         this.loading = false;
@@ -62,6 +65,7 @@ export class CreateBookingAlertComponent implements OnInit {
     }
   }
 
+  // send API request
   confirmSubmit() {
     console.log(this.collectorID);
     let url = 'https://ecogreen20210725013243.azurewebsites.net/Booking/Create/' + this.collectorID + "/" + this.bookingForm.value.date + " " + this.bookingForm.value.scheduledTime;
@@ -76,6 +80,7 @@ export class CreateBookingAlertComponent implements OnInit {
       'collector_name': this.collectorName
     }
 
+    // send post API request by specifying the URL, header and request body
     return this.http.post<any>(url, body, { headers });
   }
 

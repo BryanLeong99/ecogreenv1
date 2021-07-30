@@ -98,18 +98,14 @@
             <mat-error class="error-message" *ngIf="registerUserForm.get('password')">Min length shall be at least 8</mat-error>
         </mat-form-field>
       </div>
-      <div style="height:17px">
-
-      </div>
+      <div style="height:17px"></div>
       <div class="input-field-image">
           <mat-label>Profile Image</mat-label>
           <input type="file" formControlName="image" (change)="uploadImage($event)" required ngModel/>
       </div>
-
       <button mat-raised-button type="submit">
           Register Account
       </button>
-
       <div class="register-text" (click)="showRegisterForm()">
         Login Account
       </div>

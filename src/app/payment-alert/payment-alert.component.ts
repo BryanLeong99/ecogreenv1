@@ -33,6 +33,16 @@ export class PaymentAlertComponent implements OnInit {
   receiverName = "";
   rowKey = "";
 
+  aluminium = 0.0;
+  cardboard = 0.0;
+  copper = 0.0;
+  glass = 0.0;
+  iron = 0.0;
+  paper = 0.0;
+  plastic = 0.0;
+
+  totalPrice = 0.0;
+
   loading = false;
 
   constructor(
@@ -51,6 +61,18 @@ export class PaymentAlertComponent implements OnInit {
     this.receiverName = this.data.receiverName;
     this.receiverID = this.data.receiverID;
     this.rowKey = this.data.rowKey;
+  }
+
+  calculatePrice() {
+    this.totalPrice =  this.aluminium * this.itemArray[0].charging_rate_per_kg +
+    this.cardboard * this.itemArray[1].charging_rate_per_kg +
+    this.copper * this.itemArray[2].charging_rate_per_kg +
+    this.glass * this.itemArray[3].charging_rate_per_kg +
+    this.iron * this.itemArray[4].charging_rate_per_kg +
+    this.paper * this.itemArray[5].charging_rate_per_kg +
+    this.plastic * this.itemArray[6].charging_rate_per_kg;
+
+    console.log(this.totalPrice);
   }
 
   onSubmit() {

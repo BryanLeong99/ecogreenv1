@@ -23,6 +23,7 @@ export class MyProfileComponent implements OnInit {
   longitude = 0.0;
   phoneNumber = "";
   tempPassword = "";
+  imageURL = "";
 
   profileForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -58,6 +59,7 @@ export class MyProfileComponent implements OnInit {
       this.longitude = response.longitude;
       this.phoneNumber = response.phone_number;
       this.tempPassword = response.password;
+      this.imageURL = response.image_url;
     }, (error: any) => {
       console.log(error);
       this.loading = false;

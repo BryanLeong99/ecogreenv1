@@ -75,12 +75,29 @@ export class BookingRequestComponent implements OnInit {
 
     this.loading = true;
 
+    // get user id from the browser's cookies
+    let id = this.cookieService.get('id');
+
+    // send patch API request with header, URL and an empty body
     this.http.patch(url, {}, { headers: headers }).subscribe((response: any) => {
       console.log(response);
       this.loading = false;
 
       this.bookingArray.splice(0);
 
+      // update current location
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("Got position", position.coords);
+
+        this.updateLocation(position.coords.longitude, position.coords.latitude, id).subscribe((response: any) => {
+          console.log(response);
+        },
+        (error: any) => {
+          console.log(error);
+        });
+      });
+
+      // refresh the list of booking
       this.retrieveAllBooking().subscribe((response: any) => {
         console.log(response);
         this.bookingArray = response;
@@ -129,6 +146,16 @@ export class BookingRequestComponent implements OnInit {
     };
 
     return this.http.get(url, {headers: headers});
+  }
+
+  updateLocation(longitude: number, latitude: number, id: string) {
+    let url = 'https://ecogreen20210725013243.azurewebsites.net/Collector/Update/Location/' + longitude + "/" + latitude + "/" + id;
+
+    let headers = {
+      'accept': 'text/plain'
+    };
+
+    return this.http.patch(url, {}, { headers: headers });
   }
 
   openPaymentDialog(partitionKey: string, bookingID: string, payerID: string, payerName: string, receiverID: string, receiverName: string, rowKey: string) {

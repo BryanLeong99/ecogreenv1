@@ -40,9 +40,28 @@ h1 {
   overflow-y: scroll;
 }
 
-// form::-webkit-scrollbar {
-//   display: none;
-// }
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Nunito';
+  font-weight: 800;
+  div:nth-child(1) {
+    width: 80px;
+    text-align: left;
+    padding-bottom: 30px;
+  }
+  div:nth-child(2) {
+    padding-bottom: 30px;
+    width: 20px;
+    text-align: left;
+  }
+  div:nth-child(3) {
+    width: 100px;
+    text-align: left;
+    padding-bottom: 30px;
+  }
+}
 
 .title {
   font-size: 20px;

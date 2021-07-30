@@ -4,6 +4,9 @@
     </div>
     <div class="name-title">
         {{ name }}
+        <button mat-button (click)="updateLocation()" *ngIf="role == 'Collector'">
+          Update Location
+        </button>
     </div>
 
     <div class="section-cards-container">
@@ -39,3 +42,6 @@
         </div> -->
     </div>
 </div>
+
+
+<ngx-loading [show]="loading"></ngx-loading>

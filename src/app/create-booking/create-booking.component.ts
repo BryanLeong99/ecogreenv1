@@ -23,13 +23,16 @@ export class CreateBookingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // clear the array
     this.collectorArray.splice(0);
 
     let me: any = this;
 
+    // get current geolocation
     navigator.geolocation.getCurrentPosition((position) => {
       console.log("Got position", position.coords);
 
+      // pass the longitude and latitude as the parameter to call the API
       me.retrieveAllCollectors(position.coords.longitude, position.coords.latitude).subscribe((response: any) => {
         console.log(response);
 
@@ -39,6 +42,7 @@ export class CreateBookingComponent implements OnInit {
 
   }
 
+  // call get request to retrieve the list of collectors
   retrieveAllCollectors(longitude: number, latitude: number) {
     let url = 'https://ecogreen20210725013243.azurewebsites.net/Collector/All/' + longitude + '/' + latitude;
 

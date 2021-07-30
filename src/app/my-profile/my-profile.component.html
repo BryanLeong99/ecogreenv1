@@ -5,6 +5,11 @@
 
   <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
       <div class="main-section-container">
+        <div class="profile-image">
+          <div>
+            <img [src]="imageURL"/>
+          </div>
+        </div>
           <mat-form-field appearance="outline">
               <mat-label>Name</mat-label>
               <input matInput type="text" name="name" ngModel required formControlName="name" [(ngModel)]="name"/>

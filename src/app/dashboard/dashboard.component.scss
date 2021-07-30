@@ -2,6 +2,17 @@ circle-progress {
     margin-top: 8%;
 }
 
+button {
+  background-color: #2728F2;
+  border-radius: 18px;
+  color: white;
+  font-family: 'Nunito';
+  font-size: 15px;
+  font-weight: 700;
+  padding: 0 10px;
+  margin-right: 50px;
+}
+
 .main-container {
     padding: 3.3% 0 0 2.5%;
     // height: 85%;
@@ -17,11 +28,13 @@ circle-progress {
 }
 
 .name-title {
-    margin: 1% 0 2% 0;
+    margin: 1% 0 1% 0;
     font-family: 'Nunito';
     font-size: 25px;
     font-weight: 800;
-    height: 20px;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .section-cards-container {
@@ -122,15 +135,6 @@ circle-progress {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    button {
-        background-color: #2728F2;
-        border-radius: 18px;
-        color: white;
-        font-family: 'Nunito';
-        font-size: 15px;
-        font-weight: 700;
-        padding: 0 10px;
-    }
 }
 
 .chart-container {

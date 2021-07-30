@@ -3,7 +3,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="paymentForm">
   <div class="input-list">
     <div *ngFor="let item of itemArray">
-      <div class="title" *ngIf="item.raw_item == 'Aluminium'">
+      <div class="title" *ngIf="item.raw_item == 'Aluminium' && item.charging_rate_per_kg != 0">
         <div>
           Aluminium
         </div>
@@ -12,14 +12,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Aluminium" min=0/>
+            <input matInput type="number" formControlName="Aluminium" min=0 [(ngModel)]="aluminium" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Cardboard'">
+      <div class="title" *ngIf="item.raw_item == 'Cardboard' && item.charging_rate_per_kg != 0">
         <div>
           Cardboard
         </div>
@@ -28,14 +28,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Cardboard" min=0/>
+            <input matInput type="number" formControlName="Cardboard" min=0 [(ngModel)]="cardboard" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Copper'">
+      <div class="title" *ngIf="item.raw_item == 'Copper' && item.charging_rate_per_kg != 0">
         <div>
           Copper
         </div>
@@ -44,14 +44,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Copper" min=0/>
+            <input matInput type="number" formControlName="Copper" min=0 [(ngModel)]="copper" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Glass'">
+      <div class="title" *ngIf="item.raw_item == 'Glass' && item.charging_rate_per_kg != 0">
         <div>
           Glass
         </div>
@@ -60,14 +60,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Glass" min=0/>
+            <input matInput type="number" formControlName="Glass" min=0 [(ngModel)]="glass" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Iron'">
+      <div class="title" *ngIf="item.raw_item == 'Iron' && item.charging_rate_per_kg != 0">
         <div>
           Iron
         </div>
@@ -76,14 +76,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Iron" min=0/>
+            <input matInput type="number" formControlName="Iron" min=0 [(ngModel)]="iron" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Paper'">
+      <div class="title" *ngIf="item.raw_item == 'Paper' && item.charging_rate_per_kg != 0">
         <div>
           Paper
         </div>
@@ -92,14 +92,14 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Paper" min=0/>
+            <input matInput type="number" formControlName="Paper" min=0 [(ngModel)]="paper" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
       </div>
-      <div class="title" *ngIf="item.raw_item == 'Plastic'">
+      <div class="title" *ngIf="item.raw_item == 'Plastic' && item.charging_rate_per_kg != 0">
         <div>
           Plastic
         </div>
@@ -108,12 +108,23 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input matInput type="number" formControlName="Plastic" min=0/>
+            <input matInput type="number" formControlName="Plastic" min=0 [(ngModel)]="plastic" (change)="calculatePrice()"/>
           </mat-form-field>
         </div>
         <div>
           kg
         </div>
+      </div>
+    </div>
+    <div class="total">
+      <div>
+        Total
+      </div>
+      <div>
+        :
+      </div>
+      <div>
+       RM {{ totalPrice.toFixed(2) }}
       </div>
     </div>
   </div>

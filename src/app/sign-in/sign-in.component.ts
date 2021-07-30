@@ -134,10 +134,13 @@ export class SignInComponent implements OnInit {
     this.image = event.target.files[0];
   }
 
+  // submit registration
   submitRegistration(name: string, email: string, phoneNumber: string, address: string, username: string, password: string, image: any) {
     console.log(this.image);
     let me = this;
     let reader = new FileReader();
+
+    // convert image to a string of bytes
     reader.readAsDataURL(this.image);
     reader.onload = function() {
       me.imageByte = reader.result;
@@ -161,6 +164,7 @@ export class SignInComponent implements OnInit {
         'image': me.imageByte.substring(me.imageByte.indexOf(",") + 1, me.imageByte.Length)
       }
 
+      // call post API and process based on the response
       me.http.post<any>(url, body, { headers }).subscribe((response: any) => {
         me.loading = false;
         console.log(response);
@@ -180,10 +184,7 @@ export class SignInComponent implements OnInit {
         me.openDialog2('Registration Failed;Your registration is failed.',
         'fail');
       });
-      // console.log(me.imageByte.substring(me.imageByte.indexOf(",") + 1, me.imageByte.Length));
     }
-
-
   }
 
   showRegisterForm(): void {
